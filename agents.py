@@ -52,6 +52,13 @@ class SoftwareEngineerAgent:
             prompt=f"Project Requirements: {project_requirements}\n\nFeature Specification: {feature_spec}"
         )
         return code.strip()
+        
+    def perform_task(self, project_name, subtask):
+        # Here, subtask might be the feature code for which tests are needed.
+        # Optionally, you could use project_name for logging or additional context.
+        return self.generate_tests(subtask)
+
+
 
 class DevOpsEngineerAgent:
     def __init__(self, model="gpt-4o-mini", notes=None, max_steps=100, openai_api_key=None):
@@ -77,8 +84,7 @@ class DevOpsEngineerAgent:
 
 class QAEngineerAgent:
     def __init__(self, model="gpt-4o-mini", notes=None, max_steps=100, openai_api_key=None):
-        if notes is None: self.notes = []
-        else: self.notes = notes
+        self.notes = notes if notes is not None else []
         self.max_steps = max_steps
         self.model = model
         self.openai_api_key = openai_api_key
@@ -96,3 +102,10 @@ class QAEngineerAgent:
             prompt=f"Feature Code:\n{feature_code}"
         )
         return test_cases.strip()
+    
+    # New method to standardize the interface
+    def perform_task(self, project_name, subtask):
+        # Here, subtask might be the feature code for which tests are needed.
+        # Optionally, you could use project_name for logging or additional context.
+        return self.generate_tests(subtask)
+
