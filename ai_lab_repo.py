@@ -8,7 +8,7 @@ import pickle
 import os
 import time
 
-DEFAULT_LLM_BACKBONE = "gpt-4"
+DEFAULT_LLM_BACKBONE = "gpt-4o"
 
 class AutomatedDevWorkflow:
     def __init__(self, project_name, openai_api_key, max_steps=100, agent_model_backbone=f"{DEFAULT_LLM_BACKBONE}", notes=list(), human_in_loop_flag=None):
