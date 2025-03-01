@@ -33,8 +33,7 @@ class DevelopmentReviewAgent:
 
 class SoftwareEngineerAgent:
     def __init__(self, model="gpt-4o-mini", notes=None, max_steps=100, openai_api_key=None):
-        if notes is None: self.notes = []
-        else: self.notes = notes
+        self.notes = notes if notes is not None else []
         self.max_steps = max_steps
         self.model = model
         self.openai_api_key = openai_api_key
@@ -52,13 +51,12 @@ class SoftwareEngineerAgent:
             prompt=f"Project Requirements: {project_requirements}\n\nFeature Specification: {feature_spec}"
         )
         return code.strip()
-        
+    
+    # New unified interface method:
     def perform_task(self, project_name, subtask):
-        # Here, subtask might be the feature code for which tests are needed.
-        # Optionally, you could use project_name for logging or additional context.
-        return self.generate_tests(subtask)
-
-
+        # In this context, assume `project_name` acts as the project requirements 
+        # and `subtask` contains the feature specification.
+        return self.develop_feature(project_name, subtask)
 
 class DevOpsEngineerAgent:
     def __init__(self, model="gpt-4o-mini", notes=None, max_steps=100, openai_api_key=None):
