@@ -43,7 +43,7 @@ class AutomatedDevWorkflow:
         
         self.statistics_per_phase = {subtask: {"time": 0.0, "steps": 0.0} for _, subtasks in self.phases for subtask in subtasks}
         
-        self.engineer = SWEngineerAgent(model=self.model_backbone, notes=self.notes, max_steps=self.max_steps, openai_api_key=self.openai_api_key)
+        self.engineer = QAEngineerAgent(model=self.model_backbone, notes=self.notes, max_steps=self.max_steps, openai_api_key=self.openai_api_key)
         self.qa_engineer = QAEngineerAgent(model=self.model_backbone, notes=self.notes, max_steps=self.max_steps, openai_api_key=self.openai_api_key)
         self.devops_engineer = DevOpsEngineerAgent(model=self.model_backbone, notes=self.notes, max_steps=self.max_steps, openai_api_key=self.openai_api_key)
         
