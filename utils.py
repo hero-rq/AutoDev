@@ -47,7 +47,7 @@ def compile_latex(latex_code, compile=True, output_filename="output.pdf", timeou
     except subprocess.CalledProcessError as e:
         return f"[ERROR]: Compilation failed: {e.stderr.decode('utf-8')}"
 
-def count_tokens(messages, model="gpt-4"):
+def count_tokens(messages, model="gpt-4o"):
     enc = tiktoken.encoding_for_model(model)
     return sum([len(enc.encode(m["content"])) for m in messages])
 
@@ -65,7 +65,7 @@ def save_to_file(location, filename, data):
     with open(filepath, 'w') as f:
         f.write(data)
 
-def clip_tokens(messages, model="gpt-4", max_tokens=100000):
+def clip_tokens(messages, model="gpt-4o", max_tokens=100000):
     enc = tiktoken.encoding_for_model(model)
     total_tokens = sum([len(enc.encode(m["content"])) for m in messages])
     if total_tokens <= max_tokens:
