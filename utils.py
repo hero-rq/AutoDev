@@ -21,8 +21,7 @@ def suppress_stdout():
 def compile_latex(latex_code, compile=True, output_filename="output.pdf", timeout=30):
     latex_code = latex_code.replace(
         r"\documentclass{article}",
-        "\documentclass{article}\n\usepackage{amsmath, amssymb, graphicx, hyperref, xcolor, algorithm, algpseudocode}"
-    )
+        "\documentclass{article}\n\usepackage{amsmath, amssymb, graphicx, hyperref, xcolor, algorithm, algpseudocode}")
     dir_path = "research_dir/tex"
     tex_file_path = os.path.join(dir_path, "temp.tex")
     
