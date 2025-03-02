@@ -53,7 +53,7 @@ def query_openai(model_str, messages, temperature):
     """
     client = OpenAI()
     return client.chat.completions.create(
-        model=f"{model_str}-2024-07-18",
+        model=f"{model_str}",
         messages=messages,
         temperature=temperature
     )
