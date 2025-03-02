@@ -108,8 +108,11 @@ class DevOpsEngineerAgent:
         return infrastructure_script.strip()
 
     def perform_task(self, project_name, subtask):
-        # Dispatch tasks based on subtask type
-        print(f"subtask type: {type(subtask)}, value: {subtask}")
+    # Check if subtask is a dictionary
+        if not isinstance(subtask, dict):
+            raise TypeError(f"Expected subtask to be a dictionary, but got {type(subtask).__name__}")
+    
+    # Dispatch tasks based on subtask type
         task_type = subtask.get('type')
         task_details = subtask.get('details')
 
