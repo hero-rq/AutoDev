@@ -11,7 +11,7 @@ import time
 DEFAULT_LLM_BACKBONE = "gpt-4o"
 
 class AutomatedDevWorkflow:
-    def __init__(self, project_name, openai_api_key, max_steps=100, agent_model_backbone=f"{DEFAULT_LLM_BACKBONE}", notes=list(), human_in_loop_flag=None):
+    def __init__(self, project_name, openai_api_key, max_steps=55, agent_model_backbone=f"{DEFAULT_LLM_BACKBONE}", notes=list(), human_in_loop_flag=None):
         """
         Initialize the automated development workflow.
         @param project_name: (str) Description of the software project to develop.
