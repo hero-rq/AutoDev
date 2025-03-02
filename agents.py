@@ -32,7 +32,7 @@ class DevelopmentReviewAgent:
         return extract_json_between_markers(review)
 
 class SoftwareEngineerAgent:
-    def __init__(self, model="gpt-4o-mini", notes=None, max_steps=100, openai_api_key=None):
+    def __init__(self, model="gpt-4o-mini", notes=None, max_steps=55, openai_api_key=None):
         self.notes = notes if notes is not None else []
         self.max_steps = max_steps
         self.model = model
@@ -59,7 +59,7 @@ class SoftwareEngineerAgent:
         return self.develop_feature(project_name, subtask)
 
 class DevOpsEngineerAgent:
-    def __init__(self, model="gpt-4o-mini", notes=None, max_steps=100, openai_api_key=None):
+    def __init__(self, model="gpt-4o-mini", notes=None, max_steps=55, openai_api_key=None):
         self.notes = notes if notes is not None else []
         self.max_steps = max_steps
         self.model = model
@@ -131,7 +131,7 @@ class DevOpsEngineerAgent:
 
 
 class QAEngineerAgent:
-    def __init__(self, model="gpt-4o-mini", notes=None, max_steps=100, openai_api_key=None):
+    def __init__(self, model="gpt-4o-mini", notes=None, max_steps=55, openai_api_key=None):
         self.notes = notes if notes is not None else []
         self.max_steps = max_steps
         self.model = model
