@@ -55,7 +55,7 @@ class AutomatedCodeRefinement:
         return match.group(1).strip() if match else None
 
 class MLESolver:
-    def __init__(self, model, openai_api_key=None, project_description="", max_steps=10):
+    def __init__(self, model, openai_api_key=None, project_description="", max_steps=5):
         self.model = model
         self.openai_api_key = openai_api_key
         self.project_description = project_description
