@@ -69,11 +69,11 @@ class AutomatedDevWorkflow:
             self.statistics_per_phase[phase] = {"time": phase_duration}
 
     def execute_subtask(self, subtask):
-    agent = self.get_agent_for_subtask(subtask)
-    if agent:
-        subtask_data = {"name": subtask}  # ✅ Wrap subtask in a dictionary
-        result = agent.perform_task(self.project_name, subtask_data)
-        self.save_result(subtask, result)
+        agent = self.get_agent_for_subtask(subtask)
+        if agent:
+            subtask_data = {"name": subtask}  # ✅ Wrap subtask in a dictionary
+            result = agent.perform_task(self.project_name, subtask_data)
+            self.save_result(subtask, result)
     
     def get_agent_for_subtask(self, subtask):
         """
