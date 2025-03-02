@@ -60,8 +60,7 @@ class SoftwareEngineerAgent:
 
 class DevOpsEngineerAgent:
     def __init__(self, model="gpt-4o-mini", notes=None, max_steps=100, openai_api_key=None):
-        if notes is None: self.notes = []
-        else: self.notes = notes
+        self.notes = notes if notes is not None else []
         self.max_steps = max_steps
         self.model = model
         self.openai_api_key = openai_api_key
@@ -79,6 +78,53 @@ class DevOpsEngineerAgent:
             prompt=f"Infrastructure Configuration: {infrastructure_config}\n\nDeployment Strategy: {deployment_strategy}"
         )
         return deployment_script.strip()
+
+    def monitor_systems(self, monitoring_config):
+        devops_prompt = """
+        You are an AI-powered DevOps engineer responsible for monitoring system performance and health.
+        Given the monitoring configuration, generate a monitoring setup script.
+        Ensure the setup follows best practices for observability, alerting, and scalability.
+        """
+        monitoring_script = query_model(
+            model_str=self.model,
+            system_prompt=devops_prompt,
+            openai_api_key=self.openai_api_key,
+            prompt=f"Monitoring Configuration: {monitoring_config}"
+        )
+        return monitoring_script.strip()
+
+    def manage_infrastructure(self, infrastructure_spec):
+        devops_prompt = """
+        You are an AI-powered DevOps engineer responsible for managing infrastructure as code.
+        Given the infrastructure specifications, generate the necessary scripts or configurations.
+        Ensure the configurations follow best practices for scalability, security, and maintainability.
+        """
+        infrastructure_script = query_model(
+            model_str=self.model,
+            system_prompt=devops_prompt,
+            openai_api_key=self.openai_api_key,
+            prompt=f"Infrastructure Specification: {infrastructure_spec}"
+        )
+        return infrastructure_script.strip()
+
+    def perform_task(self, project_name, subtask):
+        # Dispatch tasks based on subtask type
+        task_type = subtask.get('type')
+        task_details = subtask.get('details')
+
+        if task_type == 'deploy_application':
+            infrastructure_config = task_details.get('infrastructure_config')
+            deployment_strategy = task_details.get('deployment_strategy')
+            return self.deploy_application(infrastructure_config, deployment_strategy)
+        elif task_type == 'monitor_systems':
+            monitoring_config = task_details.get('monitoring_config')
+            return self.monitor_systems(monitoring_config)
+        elif task_type == 'manage_infrastructure':
+            infrastructure_spec = task_details.get('infrastructure_spec')
+            return self.manage_infrastructure(infrastructure_spec)
+        else:
+            raise ValueError(f"Unknown task type: {task_type}")
+
 
 class QAEngineerAgent:
     def __init__(self, model="gpt-4o-mini", notes=None, max_steps=100, openai_api_key=None):
@@ -106,4 +152,3 @@ class QAEngineerAgent:
         # Here, subtask might be the feature code for which tests are needed.
         # Optionally, you could use project_name for logging or additional context.
         return self.generate_tests(subtask)
-
