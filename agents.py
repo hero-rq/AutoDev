@@ -109,6 +109,7 @@ class DevOpsEngineerAgent:
 
     def perform_task(self, project_name, subtask):
         # Dispatch tasks based on subtask type
+        print(f"subtask type: {type(subtask)}, value: {subtask}")
         task_type = subtask.get('type')
         task_details = subtask.get('details')
 
