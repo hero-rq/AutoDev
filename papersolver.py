@@ -4,7 +4,7 @@ import os
 from inference import query_model
 
 class ResearchPaperGenerator:
-    def __init__(self, model, openai_api_key=None, project_topic="", max_steps=10):
+    def __init__(self, model, openai_api_key=None, project_topic="", max_steps=3):
         self.model = model
         self.openai_api_key = openai_api_key
         self.project_topic = project_topic
